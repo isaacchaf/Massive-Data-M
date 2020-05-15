@@ -1,3 +1,5 @@
+Isaac Emmanuel Chávez Fuentes 
+
 # A new paradigm for Big Data
 
 ### 1.	What does the Lambda Architecture provide?
