@@ -6,8 +6,7 @@ Isaac Emmanuel Chávez Fuentes
 
 The Lambda Architecture provides a general-purpose approach to implementing
 an arbitrary function on an arbitrary dataset and having the function return its results
-with low latency. That doesn’t mean you’ll always use the exact same technologies
-every time you implement a data system. The specific technologies you use might
+with low latency. The specific technologies you use might
 change depending on your requirements. But the Lambda Architecture defines a consistent approach to choosing those technologies and to wiring them together to meet
 your requirements.
 
@@ -39,11 +38,8 @@ Lack of human-fault tolerance: An incremental system is constantly modifying the
 
 ### 4.	What are the differences between a fully incremental solution and a Lambda Architecture solution?
 
-The two solutions can be compared on three axes: accuracy, latency, and throughput. The Lambda Architecture solution is significantly better in all respects. Both
-must make approximations, but the fully incremental version is forced to use an inferior approximation technique with a 3–5x worse error rate. Performing queries is significantly more expensive in the fully incremental version, affecting both latency and
-throughput. But the most striking difference between the two approaches is the fully
-incremental version’s need to use special hardware to achieve anywhere close to reasonable throughput. Because the fully incremental version must do many random
-access lookups to resolve queries, it’s practically required to use solid state drives to
+The two solutions can be compared on three axes: accuracy, latency, and throughput. The Lambda Architecture solution is significantly better in all respects. Both must make approximations, but the fully incremental version is forced to use an inferior approximation technique with a 3–5x worse error rate. Performing queries is significantly more expensive in the fully incremental version, affecting both latency and throughput. But the most striking difference between the two approaches is the fully
+incremental version’s need to use special hardware to achieve anywhere close to reasonable throughput. Because the fully incremental version must do many random access lookups to resolve queries, it’s practically required to use solid state drives to
 avoid becoming bottlenecked on disk seeks.
  That a Lambda Architecture can produce solutions with higher performance in
 every respect, while also avoiding the complexity that plagues fully incremental architectures.
