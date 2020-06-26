@@ -24,6 +24,32 @@ when developing a prototype product for an unproven market or for a service with
 #### 1. What is Map Reduce?
 MapReduce is a programming model for processing large amounts of data in bulk across many machines, popularized by Google. A limited form of MapReduce is supported by some NoSQL datastores, including MongoDB and CouchDB, as amechanism for performing read-only queries across many documents.
 
+#### 2. What are the drivinG forces to choose NoSQL?
+• A need for greater scalability than relational databases can easily achieve, including very large datasets or very high write throughput
+• A widespread preference for free and open source software over commercial database products
+• Specialized query operations that are not well supported by the relational model
+• Frustration with the restrictiveness of relational schemas, and a desire for a more dynamic and expressive data model 
+
+#### 3. In the property graph model, what are the characteristics of the edeges and vertex?
+For vertexes:
+• A unique identifier
+• A set of outgoing edges
+• A set of incoming edges
+• A collection of properties (key-value pairs)
+
+For the edges
+• A unique identifier
+• The vertex at which the edge starts (the tail vertex)
+The vertex at which the edge ends (the head vertex)
+• A label to describe the kind of relationship between the two vertices
+• A collection of properties (key-value pairs)
+
+#### 4. What is Cypher?
+Cypher is a declarative query language for property graphs, created for the Neo4j graph database.
+
+#### 5. What are the two main types for NoSQL?
+1. Document databases target use cases where data comes in self-contained documents and relationships between one document and another are rare.
+2. Graph databases go in the opposite direction, targeting use cases where anything is potentially related to everything.
 
 ## Chapter 3:
 ### Storage and Retrieval
