@@ -18,5 +18,27 @@ Monitoring show us early warning signals and allow us to check whether any assum
 when developing a prototype product for an unproven market or for a service with a very narrow profit margin
 
 
+## Chapter 2:
+### Data Models and Query Languages
+
+#### 1. What is Map Reduce?
+MapReduce is a programming model for processing large amounts of data in bulk across many machines, popularized by Google. A limited form of MapReduce is supported by some NoSQL datastores, including MongoDB and CouchDB, as amechanism for performing read-only queries across many documents.
 
 
+## Chapter 3:
+### Storage and Retrieval
+
+#### 1. Why reads are typically slower in LSM-trees?
+Because they have to check several different data structures and SSTables at different stages of compaction.
+
+#### 2. Why CSV are not good for log?
+It’s faster and simpler to use a binary formatthat first encodes the length of a string in bytes, followed by the raw string (without need for escaping).
+
+#### 3. What are the differences between B-Trees and LMS-trees?
+ B-tree implementations are generally more mature than LSM-treeimplementations, LSM-trees are also interesting due to their performance characteristics. As a rule of thumb, LSM-trees are typically faster for writes, whereas B-trees are thought to be faster for reads. Reads are typically slower on LSM-trees because they have to check several different data structures and SSTables at different stages of compaction.
+ 
+#### 4. What is a Data Werehouse?
+A Data Werehouse is a separate database that analysts can query to theirhearts’ content, without affecting OLTP operations [48]. The data warehouse contains a read-only copy of the data in all the various OLTP systems in the company.
+
+#### 5. What is OLPT?
+OLTP (optimized for transaction processing) systems are typically user-facing, which means that they may see a huge volume of requests. In order to handle the load, applications usually only touch a small number of records in each query. The application requests records using some kind of key, and the storage engine uses an index to find the data for the requested key. Disk seek time is often the bottleneck here.
