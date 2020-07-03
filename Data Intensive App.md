@@ -68,3 +68,37 @@ A Data Werehouse is a separate database that analysts can query to theirheartsâ€
 
 #### 5. What is OLPT?
 OLTP (optimized for transaction processing) systems are typically user-facing, which means that they may see a huge volume of requests. In order to handle the load, applications usually only touch a small number of records in each query. The application requests records using some kind of key, and the storage engine uses an index to find the data for the requested key. Disk seek time is often the bottleneck here.
+
+## Chapter 4:
+### Encoding and Evolution 
+
+### 1.	what is a rolling update?
+
+It to deploy the new version to a few nodes at a time, checking whether the new version is running smoothly, and gradually working your way through all the nodes. This allows new versions to be deployed without service downtime, and thus encourages more frequent releases and better evolvability.
+
+### 2.	According to the author, why is backward compatibility  not hard to achieve?
+
+As author of the newer code, you know the format of data written by older code, and so you can explicitly handle it (if necessary, by simply keeping the old code to read the old data).
+
+### 3.	Why forward compatibility can be trickier?
+
+Because it requires older code to ignore additions made by a newer version of the code.
+
+### 4.	What are the two formats for encoding data?
+
+In memory, data is kept in objects, structs, lists, arrays, hash tables, trees, and so on. These data structures are optimized for efficient access and manipulation by the CPU (typically using pointers).
+
+When you want to write data to a file or send it over the network, you have to encode it as some kind of self-contained sequence of bytes (for example, a JSON document). Since a pointer wouldnâ€™t make sense to any other process
+
+### 5.	What are some problems with encoding libraries?
+
+The encoding is often tied to a particular programming language, and reading the data in another language is very difficult.
+
+In order to restore data in the same object types, the decoding process needs to be able to instantiate arbitrary classes. This is frequently a source of security
+problems.
+
+CPU time taken to encode or decode, and the size of the encoded Structure
+
+### 6.	Why CSV is a vague format?
+CSV does not have any schema, so it is up to the application to define the meaning of each row and column. If an application change adds a new row or column, you have to handle that change manually
+
