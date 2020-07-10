@@ -102,3 +102,28 @@ CPU time taken to encode or decode, and the size of the encoded Structure
 ### 6.	Why CSV is a vague format?
 CSV does not have any schema, so it is up to the application to define the meaning of each row and column. If an application change adds a new row or column, you have to handle that change manually
 
+
+
+## Chapter 5:
+### Replication
+
+### 1.	What is the advantage of synchronous replication?
+
+The advantage of synchronous replication is that the follower is guaranteed to have an up-to-date copy of the data that is consistent with the leader. If the leader suddenly fails, we can be sure that the data is still available on the follower.
+
+### 2.	How to choose a new leader from the rest of the replicas, when the original leader fails?
+This could be done through an election process (where the leader is chosen by a majority of the remaining replicas), or a new leader could be appointed by a previously elected controller node. The best candidate for leadership is usually the replica with the most up-to-date data changes from the old leader (to minimize any data loss).
+
+### 3.	What is the problem with circular and star topologies? 
+if just one node fails, it can interrupt the flow of replication messages between other nodes, causing them to be unable to communicate until the node is fixed. The topology could be reconfigured to work around the failed node, but in most deployments such reconfiguration would have to be done manually.
+
+### 4.	What is a single-leader replication?
+Clients send all writes to a single node (the leader), which sends a stream of data change events to the other replicas (followers). Reads can be performed on any replica, but reads from followers might be stale.
+
+### 5.	What is a problem with asynchronous replication?
+Although asynchronous replication can be fast when the system is running smoothly, it’s important to figure out what happens when replication lag increases, and servers fail. If a leader fails and you promote an asynchronously updated follower to be the new leader, recently committed data may be lost.
+
+### 6.	How to detect that a leader has failed?
+There is no foolproof way of detecting what has gone wrong, so most systems simply use a timeout: nodes frequently bounce messages back and forth between each other, and if a node doesn’t respond for some period of time—say, 30 seconds—it is assumed to be dead.
+
+
