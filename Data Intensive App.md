@@ -127,3 +127,25 @@ Although asynchronous replication can be fast when the system is running smoothl
 There is no foolproof way of detecting what has gone wrong, so most systems simply use a timeout: nodes frequently bounce messages back and forth between each other, and if a node doesn’t respond for some period of time—say, 30 seconds—it is assumed to be dead.
 
 
+## Chapter 6:
+### Partitioning
+
+### 1. What are thr Document-partitioned indexes (local indexes)?
+The secondary indexes are stored in the same partition as the primary key and value. This means that only a single partition needs to be updated on write, but a read of the secondary index requires a scatter/gather across all partitions.
+
+### 2.	What are Term-partitioned indexes?
+The secondary indexes are partitioned separately, using the indexed values. An entry in the secondary index may include records from all partitions of the primary key. When a document is written, several partitions of the secondary index need to be updated; however, a readcan be served from a single partition.
+
+### 3. What is	Key range partitioning?
+where keys are sorted, and a partition owns all the keysfrom some minimum up to some maximum. Sorting has the advantage that efficient range queries are possible, but there is a risk of hot spots if the application often accesses keys that are close together in the sorted order.
+
+### 4. What is	Hash partitioning?
+where a hash function is applied to each key, and a partition owns a range of hashes. This method destroys the ordering of keys, making range queries inefficient, but may distribute load more evenly.
+
+### 5. What are the minimum requirements expected for rebalancing?
+. After rebalancing, the load (data storage, read and write requests) should be
+shared fairly between the nodes in the cluster.
+• While rebalancing is happening, the database should continue accepting reads
+and writes.
+• No more data than necessary should be moved between nodes, to make rebalancing
+fast and to minimize the network and disk I/O load.
