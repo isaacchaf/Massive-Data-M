@@ -149,3 +149,28 @@ shared fairly between the nodes in the cluster.
 and writes.
 • No more data than necessary should be moved between nodes, to make rebalancing
 fast and to minimize the network and disk I/O load.
+
+
+
+## Chapter 7:
+### Transactions
+
+### 1. What is a transaction?
+A transaction is a way for an application to group several reads and writes together into a logical unit. Conceptually, all the reads and writes in a transaction are executed as one operation: either the entire transaction succeeds (commit) or it fails (abort, rollback).
+
+### 2. What is atomicity in ACID?
+ACID atomicity describes what happens if a client wants to make several writes, but a fault occurs after some of the writes have been processed—for example, a process crashes, a network connection is interrupted, a disk becomes full, or some integrity constraint is violated. If the writes are grouped together into an atomic transaction, and the transaction cannot be completed (committed) due to a fault, then the transaction is aborted and the database must discard or undo any writes it has made so far in that transaction.
+
+### 3. What would happen without atomicity?
+if an error occurs partway through making multiple changes, it’s difficult to know which changes have taken effect and which haven’t. The application could try again, but that risks making the same change twice, leading to duplicate or incorrect data.
+
+### 4. What is isolation in ACID?
+Isolation in the sense of ACID means that concurrently executing transactions are isolated from each other. The classic database textbooks formalize isolation as serializability, which means that each transaction can pretend that it is the only transaction running on the entire database. The database ensures that when the transactions have committed, the result is the same as if they had run serially (one after another), even though in reality they may have run concurrently
+
+### 5. What is durability?
+Durability is the promise that once a transaction has committed successfully, any data it has written will not be forgotten, even if there is a hardware fault or the database crashes.
+
+### 6. What are the two guarantees of read commited?
+1. When reading from the database, you will only see data that has been committed(no dirty reads).
+
+2. When writing to the database, you will only overwrite data that has been committed(no dirty writes).
